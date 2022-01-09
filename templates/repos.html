@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<br/>
+<div class='container'>
+<h1> All repositories with used programming languages </h1>
+
+<h3> Github Username: {{ username }}</h3>
+
+<h5> Listing public repositories sorted by creation time (last 100): </h5>
+
+    <ol>
+{% for repo_name, lang_list in zip(repos_names, all_langs_in_repo)  %}
+    <li>
+        {{repo_name}}
+        <ul>
+        {% if lang_list %}
+        {% for lang in lang_list%}  
+        <li style="list-style-type: square;">
+          {{lang}}
+        </li>
+        {% endfor %}
+        {% else %}
+        <li style="list-style-type: square;">
+            This repository is empty
+          </li>
+        {% endif %}
+        </ul>
+    </li>
+
+{% endfor %}
+    </ol>
+</div>
+
+{% endblock %}
+
+

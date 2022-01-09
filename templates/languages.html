@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<br/>
+<div class='container'>
+<h1> Percentage of programming languages used in all repositories </h1>
+<h3> Github Username: {{ username }}</h3>
+
+    <ol>
+    {% for key, value in percent_lang.items() %}
+        {% if value < 0.01 %}
+        <li>{{key}} - &lt 0.01 % </li>
+        {% else %}
+        <li>{{key}} - {{ value }} % </li>
+        {% endif %}
+    {% endfor %}
+    </ol>
+</div>
+
+
+{% endblock %}

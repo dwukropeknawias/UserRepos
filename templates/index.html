@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div class='container'>
+    <br/>
+    <h1 style = "text-align: center;">UserRepos Search</h1>
+    <br/>
+
+    <form action="/result" method="POST">
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Who you want to find?</label>
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder='Github username' name='github_username' required>
+        </div>
+
+        <label for="InputOpt" class="form-label">Which option you want to choose?</label>
+        <select class="form-select" aria-label="Default select example" name="which_option" id="InputOpt" required>
+          <option value="1">List all repositories</option>
+          <option value="2">Obtain the percentage of used programming languages</option>
+        </select>
+        <br/>
+        <button type="submit" class="btn btn-secondary">Submit</button>
+      </form>
+
+</div>
+
+{% endblock %}
