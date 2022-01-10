@@ -109,6 +109,11 @@ def result():
             else:
                 lang_response = requests.get(r['languages_url'])
             for key in lang_response.json():
+                if key == "message": # no more requests in between
+                    error_message1 = "Error 403"
+                    error_message2 = "API rate limit exceeded for your IP address. Check docs \
+                    for more information - https://docs.github.com/en/rest/overview/resources-in-the-rest-api#rate-limiting"
+                    return render_template("error.html", user=user, error_message1=error_message1, error_message2=error_message2)
                 if key not in percent_lang:
                     percent_lang[key] = int(lang_response.json()[key])
                 else:

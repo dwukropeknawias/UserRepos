@@ -23,8 +23,14 @@ def test_login():
 
     assert response.status_code == 302
     assert response.location.startswith('https://github.com/login/oauth/authorize')
-    
 
+def test_logout():
+    client = user_repos.app.test_client()
+    url = '/logout'
+    response = client.get(url)
+
+    assert response.status_code == 302
+    
 def test_result_with_get():
     client = user_repos.app.test_client()
     url = '/result'
