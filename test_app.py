@@ -25,17 +25,11 @@ def test_login():
     assert response.location.startswith('https://github.com/login/oauth/authorize')
     
 
-def test_authorize_fail():
-    client = user_repos.app.test_client()
-    url = '/authorize'
-    response = client.get(url)
-
-    assert response.status_code == 400 # no token
-
-def test_result():
+def test_result_with_get():
     client = user_repos.app.test_client()
     url = '/result'
     response = client.get(url)
 
-    assert response.status_code == 200 or response.status_code == 403 or response.status_code == 404# no token
+    assert response.status_code == 405 
+
 
