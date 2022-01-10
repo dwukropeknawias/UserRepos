@@ -85,10 +85,15 @@ def result():
         response = requests.get(f"https://api.github.com/users/{username}/repos", params=payload) #not logged in user can get only 30 (default)
 
     if response.status_code == 404:
-        return render_template('404.html', user=user, username=username)
+        error_message1 = "User Not Found"
+        error_message2 = "Sorry but there is not such user on GitHub with username dwukropeknawias"
+        return render_template("error.html", user=user, error_message1=error_message1, error_message2=error_message2)
 
     elif response.status_code == 403:
-        return render_template('403.html', user=user)
+        error_message1 = "Error 403"
+        error_message2 = "API rate limit exceeded for your IP address. Check docs \
+        for more information - https://docs.github.com/en/rest/overview/resources-in-the-rest-api#rate-limiting"
+        return render_template("error.html", user=user, error_message1=error_message1, error_message2=error_message2)
 
     elif response.status_code == 200:
     
@@ -124,7 +129,9 @@ def result():
             return render_template('languages.html', percent_lang=percent_lang, user=user, username=username)
 
     else:
-        return render_template('unknown.html', user=user)
+        error_message1 = "Unknown error"
+        error_message2 = "Something went wrong - try again later"
+        return render_template("error.html", user=user, error_message1=error_message1, error_message2=error_message2)
 
 
 
